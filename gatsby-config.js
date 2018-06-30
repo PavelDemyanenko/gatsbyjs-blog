@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Pavel Demyanenko',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
