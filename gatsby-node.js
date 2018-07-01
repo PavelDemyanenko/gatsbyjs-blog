@@ -26,21 +26,36 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       allMarkdownRemark {
         edges {
           node {
+            html
+            id
             fields {
               slug
+            }
+            frontmatter {
+              date
+              path
+              title
+              excerpt
             }
           }
         }
       }
     }
   `).then(result => {
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      if (result.errors) {
+        return Promise.reject (result.errors);
+      }
+      const posts = result.data.allMarkdownRemark.edges
+      const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
+      posts.forEach(({ node }, index) => {
         createPage({
           path: node.fields.slug,
-          component: path.resolve('./src/templates/blog-post.js'),
+          component: blogPostTemplate,
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
             slug: node.fields.slug,
+            prev: index === 0 ? null : posts[index - 1].node,
+            next: index === posts.length - 1 ? null : posts[index + 1].node,
           },
         })
       })
