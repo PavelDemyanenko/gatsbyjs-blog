@@ -9,12 +9,23 @@ export default ({ data }) => {
       {posts.edges.map(({ node }) => (
         <div key={node.id}>
           <Link to={node.fields.slug}>
-          <h3>
-            {node.frontmatter.title}{" "}
-            <span>— {node.frontmatter.date}</span>
-          </h3>
+            <h3>
+              {node.frontmatter.title}{" "}
+              <span>— {node.frontmatter.date}</span>
+            </h3>
           </Link>
           <p>{node.excerpt}</p>
+          <ul>
+            {node.frontmatter.tags.map (tag => {
+              return (
+                <li>
+                  <Link to={`/tags/${tag}`}>
+                    {tag}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       ))}
     </div>
