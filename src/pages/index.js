@@ -18,7 +18,7 @@ export default ({ data }) => {
           <ul>
             {node.frontmatter.tags.map (tag => {
               return (
-                <li>
+                <li key={tag}>
                   <Link to={`/tags/${tag}`}>
                     {tag}
                   </Link>
@@ -42,6 +42,7 @@ export const query = graphql `
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            tags
           }
           fields {
             slug
