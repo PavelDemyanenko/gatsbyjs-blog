@@ -9,7 +9,7 @@ const AllTags = ({pathContext}) => {
         <ul>
           {tags.map (tag => {
             return (
-              <li>
+              <li key={tag}>
                 <Link to={`tags/${tag}`}>
                   {tag}
                 </Link>
