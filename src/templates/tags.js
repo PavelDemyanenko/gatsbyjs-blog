@@ -26,3 +26,6 @@ const Tags = ({pathContext}) => {
     );
   }
 };
+
+export default Tags;
+

@@ -23,7 +23,7 @@ const Layout = ({ children, data }) => (
         paddingTop: 0,
       }}
     >
-      {children()}
+    {children()}
     </div>
   </div>
 )
@@ -42,4 +42,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`

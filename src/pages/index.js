@@ -2,19 +2,19 @@ import React from 'react';
 import Link from 'gatsby-link';
 
 export default ({ data }) => {
-  const posts = data.allMarkdownRemark
+  const {edges: posts} = data.allMarkdownRemark;
   return (
     <div>
-      <h4>{posts.totalCount} Posts</h4>
-      {posts.edges.map(({ node }) => (
+      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+      {posts.map(({ node }) => (
         <div key={node.id}>
-          <Link to={node.fields.slug}>
+          <Link to={node.frontmatter.path}>
             <h3>
               {node.frontmatter.title}{" "}
               <span>— {node.frontmatter.date}</span>
             </h3>
           </Link>
-          <p>{node.excerpt}</p>
+          <p>{node.frontmatter.excerpt}</p>
           <ul>
             {node.frontmatter.tags.map (tag => {
               return (
@@ -39,17 +39,16 @@ export const query = graphql `
       edges {
         node {
           id
+          html
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            path
             tags
+            excerpt
           }
-          fields {
-            slug
-          }
-          excerpt
         }
       }
     }
   }
-`
+`;

@@ -10,11 +10,11 @@ const { createFilePath } = require('gatsby-source-filesystem');
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
   if (node.internal.type === 'MarkdownRemark') {
-    const slug = createFilePath({ node, getNode, basePath: 'pages' })
+    const path = createFilePath({ node, getNode, basePath: 'pages' })
     createNodeField({
       node,
-      name: 'slug',
-      value: slug,
+      name: 'path',
+      value: path,
     })
   }
 };
@@ -35,6 +35,7 @@ const createTagPages = (createPage, posts) => {
       });
     }
   });
+
   const tags = Object.keys (postsByTags);
 
   createPage ({
@@ -44,6 +45,7 @@ const createTagPages = (createPage, posts) => {
       tags: tags.sort (),
     },
   });
+
   tags.forEach (tagName => {
     const posts = postsByTags[tagName];
 
@@ -61,6 +63,7 @@ const createTagPages = (createPage, posts) => {
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
+
   return new Promise((resolve, reject) => {
     graphql(`{
       allMarkdownRemark {
@@ -68,9 +71,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           node {
             html
             id
-            fields {
-              slug
-            }
             frontmatter {
               date
               path
@@ -86,15 +86,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       if (result.errors) {
         return Promise.reject (result.errors);
       }
-      const posts = result.data.allMarkdownRemark.edges
+
+      const posts = result.data.allMarkdownRemark.edges;
+
       createTagPages (createPage, posts)
+
       posts.forEach(({ node }, index) => {
         createPage({
-          path: node.fields.slug,
+          path: node.frontmatter.path,
           component: blogPostTemplate,
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug,
+            link: node.frontmatter.path,
             prev: index === 0 ? null : posts[index - 1].node,
             next: index === posts.length - 1 ? null : posts[index + 1].node,
           },

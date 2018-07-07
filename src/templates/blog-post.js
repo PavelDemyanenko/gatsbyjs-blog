@@ -1,44 +1,48 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
+import Helmet from 'react-helmet';
 
-export default ({ data, pathContext}) => {
-    const post = data.markdownRemark
-    const {next, prev} = pathContext;
-    return (
+const Template = ({data, location, pathContext}) => {
+  const {markdownRemark: post} = data;
+  const {frontmatter, html} = post;
+  const {title, date} = frontmatter;
+  const {next, prev} = pathContext;
+
+  return (
+    <div>
+      <Helmet title={`${title} - My Blog`} />
       <div>
-        <Helmet title={`${post.frontmatter.title} - Pavel Demyanenko`}/>
-        <div>
-            <h1>{post.frontmatter.title}</h1>
-            <h3>{post.frontmatter.date}</h3>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
-            <p>
-              {prev &&
-                <Link to={prev.fields.slug}>
-                  Previous: {prev.fields.title}
-                </Link>
-              }
-            </p>
-            <p>
-              {next &&
-                <Link to={next.fields.slug}>
-                  Next: {next.fields.title}
-                </Link>}
-            </p>
-        </div>
+        <div dangerouslySetInnerHTML={{__html: html}} />
+        <p>
+          {prev &&
+            <Link to={prev.frontmatter.path}>
+              Previous: {prev.frontmatter.title}
+            </Link>}
+        </p>
+        <p>
+          {next &&
+            <Link to={next.frontmatter.path}>
+              Next: {next.frontmatter.title}
+            </Link>}
+        </p>
       </div>
-    );
+    </div>
+  );
 };
 
-export const query = graphql`
-  query BlogPostQuery($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+export const pageQuery = graphql`
+  query BlogPostByPath($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         title
-        date(formatString: "MMMM, DD, YYYY")
+        date(formatString: "MMMM DD, YYYY")
+        path
         tags
+        excerpt
       }
     }
   }
 `;
+
+export default Template;

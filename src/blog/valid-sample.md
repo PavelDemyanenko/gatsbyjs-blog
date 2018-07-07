@@ -6,8 +6,6 @@ tags: ['tag1', "tag2", "tag3", "tag4", "tag5", "tag6"]
 excerpt: "Lorem ipsum dolor sit amet"
 ---
 
-![Cover Image](https://nerdist.com/wp-content/uploads/2016/05/REBIRTH-splash.jpg)
-
 # Valid sample markdown
 
 ### July 05, 2018
