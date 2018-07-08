@@ -4,6 +4,7 @@ date: '2018-07-05T12:34:00+00:00'
 title: "Valid sample markdown"
 tags: ['tag1', "tag2", "tag3", "tag4", "tag5", "tag6"]
 excerpt: "Lorem ipsum dolor sit amet"
+featuredImage: "./featured-image.jpg"
 ---
 
 # Valid sample markdown

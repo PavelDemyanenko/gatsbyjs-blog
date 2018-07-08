@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import Img from 'gatsby-image';
 
 export default ({ data }) => {
   const {edges: posts} = data.allMarkdownRemark;
@@ -14,6 +15,7 @@ export default ({ data }) => {
               <span>— {node.frontmatter.date}</span>
             </h3>
           </Link>
+          <Img sizes={node.frontmatter.featuredImage.childImageSharp.sizes} />
           <p>{node.frontmatter.excerpt}</p>
           <ul>
             {node.frontmatter.tags.map (tag => {
@@ -46,6 +48,13 @@ export const query = graphql `
             path
             tags
             excerpt
+            featuredImage {
+              childImageSharp {
+                sizes(maxWidth: 540) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
         }
       }
