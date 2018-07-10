@@ -64,6 +64,57 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
 
+  const pageLength = 2
+
+  const pageToPath = (index, pathPrefix, maxPages) => {
+    if (pathPrefix !== null) {
+      pathPrefix = `/${pathPrefix}`
+    } else {
+      pathPrefix = ''
+    }
+
+    if (index === 1) {
+      return `${pathPrefix}/`
+    }
+
+    if (index > 1 && index <= maxPages) {
+      return `${pathPrefix}/${index}`
+    }
+
+    return ''
+  };
+
+  const createPaginatedPages = ({
+    edges,
+    pathPrefix = null,
+    component,
+    context = {}
+  }) => {
+    const groupedPages = edges
+      .map((edge, index) => {
+        return index % pageLength === 0
+          ? edges.slice(index, index + pageLength)
+          : null
+      })
+      .filter(edge => edge);
+    const maxPages = groupedPages.length;
+
+    _.each(groupedPages, (group, index) => {
+      const pageNumber = index + 1;
+
+      return createPage({
+        path: pageToPath(pageNumber, pathPrefix, maxPages),
+        component: component,
+        context: {
+          group: group,
+          nextPath: pageToPath(pageNumber - 1, pathPrefix, maxPages),
+          prevPath: pageToPath(pageNumber + 1, pathPrefix, maxPages),
+          extraContext: context
+        }
+      })
+    })
+  };
+
   return new Promise((resolve, reject) => {
     graphql(`{
       allMarkdownRemark {
@@ -91,18 +142,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
       createTagPages (createPage, posts)
 
-      posts.forEach(({ node }, index) => {
-        createPage({
-          path: node.frontmatter.path,
-          component: blogPostTemplate,
-          context: {
-            // Data passed to context is available in page queries as GraphQL variables.
-            link: node.frontmatter.path,
-            prev: index === 0 ? null : posts[index - 1].node,
-            next: index === posts.length - 1 ? null : posts[index + 1].node,
-          },
-        })
+      createPaginatedPages({
+        edges: posts,
+        component: blogPostTemplate
       })
+
       resolve()
     })
   })

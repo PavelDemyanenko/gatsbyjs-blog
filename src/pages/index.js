@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 
 export default ({ data }) => {
   const {edges: posts} = data.allMarkdownRemark;
+  const { nextPath, prevPath } = pathContext;
   return (
     <div>
       <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
@@ -30,6 +31,18 @@ export default ({ data }) => {
           </ul>
         </div>
       ))}
+      <div>
+          {prevPath.length > 0 &&
+          <Link style={{ boxShadow: 'none' }} to={prevPath}>
+            &lt; Older posts
+          </Link>
+          }
+          {nextPath.length > 0 &&
+          <Link style={{ boxShadow: 'none' }} to={prevPath}>
+            Newer posts &gt;
+          </Link>
+          }
+        </div>
     </div>
   );
 };
