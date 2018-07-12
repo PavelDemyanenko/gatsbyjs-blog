@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'gatsby-link'
 import get from "lodash/get";
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 
 
 class IndexPage extends React.Component {
@@ -14,13 +15,12 @@ class IndexPage extends React.Component {
     return (
       <div>
         <Helmet title={siteTitle} />
-        <Bio />
         {group.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
+          const title = get(node, 'frontmatter.title') || node.frontmatter.link
           return (
-            <div key={node.fields.slug}>
+            <div key={node.frontmatter.link}>
               <h3>
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
+                <Link to={node.frontmatter.link}>
                   {title}
                 </Link>
               </h3>

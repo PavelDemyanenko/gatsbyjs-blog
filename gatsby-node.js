@@ -3,7 +3,7 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-
+const _ = require('lodash');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
@@ -62,7 +62,6 @@ const createTagPages = (createPage, posts) => {
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
-  const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
 
   const pageLength = 2
 
@@ -116,6 +115,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   };
 
   return new Promise((resolve, reject) => {
+    const blogPostTemplate = path.resolve('./src/templates/blog-post.js')
     graphql(`{
       allMarkdownRemark {
         edges {
@@ -128,6 +128,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               title
               excerpt
               tags
+              featuredImage {
+                childImageSharp {
+                  sizes(maxWidth: 540) {
+                    src
+                    srcSet
+                  }
+                }
+              }
             }
           }
         }
@@ -144,7 +152,22 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
       createPaginatedPages({
         edges: posts,
-        component: blogPostTemplate
+        component: path.resolve(`./src/templates/index.js`)
+      })
+
+      _.each(posts, (post, index) => {
+        const previous = index === posts.length - 1 ? false : posts[index + 1].node;
+        const next = index === 0 ? false : posts[index - 1].node;
+
+        createPage({
+          path: post.node.frontmatter.path,
+          component: blogPostTemplate,
+          context: {
+            link: post.node.frontmatter.path,
+            previous,
+            next,
+          },
+        })
       })
 
       resolve()
