@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
+import Disqus from 'disqus-react';
 
 const BlogPostTemplate = ({data, pathContext}) => {
   const {markdownRemark: post} = data;
@@ -8,11 +9,35 @@ const BlogPostTemplate = ({data, pathContext}) => {
   const {title, date} = frontmatter;
   const {next, prev} = pathContext;
 
+  const disqusShortname = "";
+    // const url = "http://" + post.frontmatter.path;
+    // let disqusArticleIdentifier;
+    // if (post.frontmatter.disqusArticleIdentifier) {
+    //   disqusArticleIdentifier = post.frontmatter.disqusArticleIdentifier;
+    // } else {
+    //   disqusArticleIdentifier = post.frontmatter.path;
+    // }
+    // const disqusConfig = {
+    //   url: url,
+    //   identifier: disqusArticleIdentifier,
+    //   title: post.frontmatter.title
+    // };
+    // let disqus = null;
+    // if (typeof window !== "undefined") {
+    //   disqus = (
+    //     <Disqus.DiscussionEmbed
+    //       shortname={disqusShortname}
+    //       config={disqusConfig}
+    //     />
+    //   );
+    // }
+
   return (
     <div>
       <Helmet title={`${title} - My Blog`} />
       <div>
         <div dangerouslySetInnerHTML={{__html: html}} />
+        {disqus}
         <p>
           {prev &&
             <Link to={prev.frontmatter.path}>
