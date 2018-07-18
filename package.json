@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "disqus-react": "^1.0.5",
     "gatsby": "^1.9.273",
     "gatsby-image": "^1.0.54",
     "gatsby-link": "^1.6.45",

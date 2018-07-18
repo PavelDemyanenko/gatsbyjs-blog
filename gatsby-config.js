@@ -2,7 +2,7 @@ const path = require(`path`);
 
 module.exports = {
   siteMetadata: {
-    title: `Pavel Demyanenko\`s Programming Blog`,
+    title: `Pavel Demyanenko's Programming Blog`,
     author: `Pavel Demyanenko`,
     description: `Blog about Full-stack Software Development. Clean code, Design patterns, Java, Spring, Javascript, Angular, React and more.`,
     siteUrl: `https://www.paveldemyanenko.com/blog`,
@@ -56,7 +56,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-          name: `Pavel Demyanenko\`s Programming Blog`,
+          name: `Pavel Demyanenko's Programming Blog`,
           short_name: `Pavel Demyanenko\`s Programming Blog`,
           start_url: `https://www.paveldemyanenko.com/blog`,
           background_color: `#fff`,
