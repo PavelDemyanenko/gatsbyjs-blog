@@ -1,24 +1,24 @@
-const path = require('path');
+const path = require(`path`);
 
 module.exports = {
   siteMetadata: {
-    title: 'Pavel Demyanenko\'s Programming Blog',
-    author: 'Pavel Demyanenko',
-    description: 'Blog about Full-stack Software Development. Clean code, Design patterns, Java, Spring, Javascript, Angular, React and more.',
-    siteUrl: 'https://www.paveldemyanenko.com/blog',
+    title: `Pavel Demyanenko\`s Programming Blog`,
+    author: `Pavel Demyanenko`,
+    description: `Blog about Full-stack Software Development. Clean code, Design patterns, Java, Spring, Javascript, Angular, React and more.`,
+    siteUrl: `https://www.paveldemyanenko.com/blog`,
   },
-  pathPrefix: '/',
+  pathPrefix: `/`,
   plugins: [
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet',
-    'gatsby-remark-copy-linked-files',
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-remark-copy-linked-files`,
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images',
+            resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 540,
             },
@@ -29,7 +29,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-58342253-1",
+        trackingId: `UA-58342253-1`,
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
@@ -37,7 +37,7 @@ module.exports = {
         // Setting this parameter is also optional
         respectDNT: true,
         // Avoids sending pageview hits from custom paths
-        exclude: ["/preview/**", "/do-not-track/me/too/"],
+        exclude: [`/preview/**`, `/do-not-track/me/too/`],
       },
     },
     {
@@ -47,10 +47,10 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: 'src',
-        path: path.resolve(__dirname, 'src/blog'),
+        name: `src`,
+        path: path.resolve(__dirname, `src/blog`),
       },
     },
   ],
