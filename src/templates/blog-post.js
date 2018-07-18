@@ -6,7 +6,7 @@ const BlogPostTemplate = ({data, pathContext}) => {
   const {markdownRemark: post} = data;
   const {frontmatter, html} = post;
   const {title, date} = frontmatter;
-  const {next, prev} = pathContext;
+  const {next, previous} = pathContext;
 
   return (
     <div>
@@ -14,9 +14,9 @@ const BlogPostTemplate = ({data, pathContext}) => {
       <div>
         <div dangerouslySetInnerHTML={{__html: html}} />
         <p>
-          {prev &&
-            <Link to={prev.frontmatter.path}>
-              Previous: {prev.frontmatter.title}
+          {previous &&
+            <Link to={previous.frontmatter.path}>
+              Previous: {previous.frontmatter.title}
             </Link>}
         </p>
         <p>
