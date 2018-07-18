@@ -53,5 +53,6 @@ module.exports = {
         path: path.resolve(__dirname, `src/blog`),
       },
     },
+    `gatsby-plugin-sitemap`,
   ],
 }
