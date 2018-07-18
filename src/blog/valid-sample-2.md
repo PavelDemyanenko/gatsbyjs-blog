@@ -5,6 +5,7 @@ title: "Valid sample markdown 2"
 tags: ['tag1', "tag2", "tag3", "tag4", "tag5"]
 excerpt: "Lorem ipsum dolor sit amet"
 featuredImage: "./featured-image.jpg"
+disqusArticleIdentifier: '2 http://paveldemyanenko.com/blog/?p=2'
 ---
 
 # Valid sample markdown 2
