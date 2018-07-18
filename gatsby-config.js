@@ -53,6 +53,29 @@ module.exports = {
         path: path.resolve(__dirname, `src/blog`),
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+          name: `Pavel Demyanenko\`s Programming Blog`,
+          short_name: `Pavel Demyanenko\`s Programming Blog`,
+          start_url: `https://www.paveldemyanenko.com/blog`,
+          background_color: `#fff`,
+          theme_color: `#007acc`,
+          display: `minimal-ui`,
+          icons: [
+              {
+                  src: `/favicons/favicon.png`,
+                  sizes: `64x64`,
+                  type: `image/png`,
+              },
+              {
+                  src: `/favicons/640x640.png`,
+                  sizes: `640x640`,
+                  type: `image/png`,
+              }
+          ],
+      },
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-offline`,
   ],
