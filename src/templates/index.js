@@ -1,7 +1,7 @@
 // src/templates/index.js
-import React from 'react';
+import React from 'react'
 import Link from 'gatsby-link'
-import get from "lodash/get";
+import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
@@ -9,18 +9,18 @@ import Img from 'gatsby-image'
 class IndexPage extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const { data, pathContext } = this.props;
+    const { pathContext } = this.props;
     const { group, nextPath, prevPath } = pathContext;
 
     return (
       <div>
         <Helmet title={siteTitle} />
         {group.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.frontmatter.link
+          const title = get(node, 'frontmatter.title') || node.frontmatter.path
           return (
-            <div key={node.frontmatter.link}>
+            <div key={node.frontmatter.path}>
               <h3>
-                <Link to={node.frontmatter.link}>
+                <Link to={node.frontmatter.path}>
                   {title}
                 </Link>
               </h3>
@@ -43,9 +43,9 @@ class IndexPage extends React.Component {
         })}
         <div>
           {prevPath.length > 0 &&
-          <Link to={prevPath}>
-            &lt; Older posts
-          </Link>
+            <Link to={prevPath}>
+              &lt; Older posts
+            </Link>
           }
           {nextPath.length > 0 &&
           <Link to={prevPath}>

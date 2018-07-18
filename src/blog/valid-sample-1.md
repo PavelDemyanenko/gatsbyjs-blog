@@ -1,13 +1,13 @@
 ---
-path: '/valid-sampe-markdown'
+path: '/valid-sample-1'
 date: '2018-07-05T12:34:00+00:00'
-title: "Valid sample markdown"
+title: "Valid sample markdown 1"
 tags: ['tag1', "tag2", "tag3", "tag4", "tag5", "tag6"]
 excerpt: "Lorem ipsum dolor sit amet"
 featuredImage: "./featured-image.jpg"
 ---
 
-# Valid sample markdown
+# Valid sample markdown 1
 
 ### July 05, 2018
 

@@ -7,7 +7,7 @@ const BlogPostTemplate = ({data, pathContext}) => {
   const {markdownRemark: post} = data;
   const {frontmatter, html} = post;
   const {title, date} = frontmatter;
-  const {next, prev} = pathContext;
+  const {next, previous} = pathContext;
 
   const disqusShortname = "";
     // const url = "http://" + post.frontmatter.path;
@@ -39,9 +39,9 @@ const BlogPostTemplate = ({data, pathContext}) => {
         <div dangerouslySetInnerHTML={{__html: html}} />
         {disqus}
         <p>
-          {prev &&
-            <Link to={prev.frontmatter.path}>
-              Previous: {prev.frontmatter.title}
+          {previous &&
+            <Link to={previous.frontmatter.path}>
+              Previous: {previous.frontmatter.title}
             </Link>}
         </p>
         <p>
