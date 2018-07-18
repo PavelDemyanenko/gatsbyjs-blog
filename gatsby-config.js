@@ -2,8 +2,12 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Pavel Demyanenko',
+    title: 'Pavel Demyanenko\'s Programming Blog',
+    author: 'Pavel Demyanenko',
+    description: 'Blog about Full-stack Software Development. Clean code, Design patterns, Java, Spring, Javascript, Angular, React and more.',
+    siteUrl: 'https://www.paveldemyanenko.com/blog',
   },
+  pathPrefix: '/',
   plugins: [
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -25,7 +29,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+        trackingId: "UA-58342253-1",
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
@@ -34,6 +38,12 @@ module.exports = {
         respectDNT: true,
         // Avoids sending pageview hits from custom paths
         exclude: ["/preview/**", "/do-not-track/me/too/"],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+          siteUrl: `https://www.paveldemyanenko.com/blog`,
       },
     },
     {
