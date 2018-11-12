@@ -1,17 +1,17 @@
 {
-  "name": "gatsby-starter-minimal-blog",
-  "description": "Gatsby Starter - Minimal Blog",
+  "name": "pavel-demyanenko-tech-blog",
+  "description": "Pavel Demyanenko - Tech blog",
   "version": "0.1.0",
   "author": "Pavel Demyanenko <mail@paveldemyanenko.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.8.0",
-    "gatsby": "^2.0.46",
+    "gatsby": "^2.0.47",
     "gatsby-plugin-catch-links": "^2.0.8",
     "gatsby-plugin-lodash": "^3.0.2",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-netlify": "^2.0.4",
     "gatsby-plugin-offline": "^2.0.13",
-    "gatsby-plugin-react-helmet": "^3.0.1",
+    "gatsby-plugin-react-helmet": "^3.0.2",
     "gatsby-plugin-sitemap": "^2.0.2",
     "gatsby-plugin-styled-components": "^3.0.1",
     "gatsby-plugin-typography": "^2.2.1",
@@ -49,13 +49,13 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.8.0",
+    "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^3.1.0",
+    "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.14.3"
+    "prettier": "^1.15.2"
   }
 }
