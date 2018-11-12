@@ -1,15 +1,26 @@
 import Typography from 'typography'
-import Wordpress2016 from 'typography-theme-wordpress-2016'
 
-Wordpress2016.overrideThemeStyles = () => ({
-  'a.gatsby-resp-image-link': {
-    boxShadow: 'none',
-  },
+const config = require('../../config/SiteConfig')
+
+const typography = new Typography({
+  title: 'Minimal',
+  baseFontSize: config.baseFontSize,
+  baseLineHeight: 1.66,
+  scaleRatio: 3.157,
+  headerFontFamily: [config.headerFontFamily, 'sans-serif'],
+  bodyFontFamily: [config.bodyFontFamily, 'sans-serif'],
+  headerWeight: 700,
+  googleFonts: [
+    {
+      name: config.headerFontFamily,
+      styles: ['700'],
+    },
+    {
+      name: config.bodyFontFamily,
+      styles: ['400'],
+    },
+  ],
 })
-
-delete Wordpress2016.googleFonts
-
-const typography = new Typography(Wordpress2016)
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {
@@ -17,5 +28,3 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default typography
-export const rhythm = typography.rhythm
-export const scale = typography.scale
